@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ingresar Estudiante</title>
+</head>
+<body>
+	<h1>Ingresar Estudiante</h1>
+	<div style="">
+		<form th:action="@{/insertarEstudiante}" th:object="${estudiante}" method="post">
+			<label>Nombre: </label>
+			<input type= "text" th:field="${estudiante.nombre}"><br>
+			<span th:errors = "*{nombre}" style="color: #FF0000"></span><br>
+			
+			<label>Apellido: </label>
+			<input type= "text" th:field="*{apellido}"><br>
+			<span th:errors = "*{apellido}" style="color: #FF0000"></span><br>
+			
+			<label >Carnet de Estudiante: </label>
+			<input type= "text" th:field="*{carnet}"><br>
+			<span th:errors = "*{carnet}" style="color: #FF0000"></span><br>
+			
+			<label>Carrera: </label>
+			<input type= "text" th:field="*{carrera}" ><br>
+			<span th:errors = "*{carrera}" style="color: #FF0000"></span><br>
+			
+			<input type="submit" value="Agregar Estudiante">
+		</form>
+		
+		<a href="/listado">Listado de Estudiantes</a>
+	</div>
+</body>
+</html>
