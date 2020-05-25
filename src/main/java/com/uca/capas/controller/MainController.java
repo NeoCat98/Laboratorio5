@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.uca.capas.dao.EstudianteDAO;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.service.EstudianteService;
 
 @Controller
 public class MainController {
 	@Autowired
-	private EstudianteDAO estudianteDAO;
+	private EstudianteService estudianteService;
 	
 	@RequestMapping("/inicio")
 	public ModelAndView inicio() {
@@ -36,7 +36,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		List<Estudiante> estudiantes = null;
 		try {
-			estudiantes = estudianteDAO.findAll();
+			estudiantes = estudianteService.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +55,7 @@ public class MainController {
 		} else {
 			mav.addObject("estudiante",new Estudiante());
 			mav.setViewName("index");
-			estudianteDAO.insert(estudiante);
+			estudianteService.insert(estudiante);
 		}
 		
 		return mav;
@@ -66,8 +66,8 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		List<Estudiante> estudiantes = null;
 		try {
-			estudianteDAO.delete(id);
-			estudiantes = estudianteDAO.findAll();
+			estudianteService.delete(id);
+			estudiantes = estudianteService.findAll();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
